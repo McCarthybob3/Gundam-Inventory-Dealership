@@ -1,0 +1,119 @@
+﻿@model DealerShipMastery.UI.Models.AddMobileSuitViewModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add new</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <h2>Add Item</h2>
+        @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formAddMobileSuit" }))
+    {
+        @Html.HiddenFor(m => m.MobileSuit.InventoryNumber);
+    @Html.HiddenFor(m => m.MobileSuit.UserID);
+    @Html.ValidationSummary()
+        <div>
+            <div class="form-group">
+                <label>Item Name</label>
+
+                @Html.TextBoxFor(i => i.MobileSuit.Name, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Item Name</label>
+
+                @Html.TextBoxFor(i => i.MobileSuit.Year, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Item Name</label>
+
+                @Html.TextBoxFor(i => i.MobileSuit.SerialNumber, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Type Name</label>
+                @Html.DropDownListFor(i => i.MobileSuit.TypeID, Model.Types, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Real Value</label>
+
+                @Html.TextBoxFor(i => i.MobileSuit.MSRP, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Value to display</label>
+                @Html.TextBoxFor(i => i.MobileSuit.SalePrice, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                @Html.TextAreaFor(i => i.MobileSuit.Description, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                @Html.CheckBoxFor(i => i.MobileSuit.Featured, new { @class = "form-check-input" })
+                <label class="form-check-label">Favorite</label>
+            </div>
+            <div class="form-group">
+                <label>Body Style</label>
+                @Html.DropDownListFor(i => i.MobileSuit.BodyStyleID, Model.BodyStyles, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Centuries</label>
+                @Html.DropDownListFor(i => i.MobileSuit.CenturyID, Model.Centuries, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Color</label>
+                @Html.DropDownListFor(i => i.MobileSuit.ColorID, Model.Colors, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Interior</label>
+                @Html.DropDownListFor(i => i.MobileSuit.Interior, Model.Colors, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Make</label>
+                @Html.DropDownListFor(i => i.MobileSuit.MakeID, Model.Makes, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label>Currency</label>
+                @Html.DropDownListFor(i => i.MobileSuit.ModelID, Model.Models, new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group">
+                <label>Currency</label>
+                @Html.DropDownListFor(i => i.MobileSuit.WeaponID, Model.Weapons, new { @class = "form-control" })
+
+            </div>
+          
+            <div class="form-group">
+                <label>Image</label>
+                <input id="ImageUpload" name="ImageUpload" type="file" class="form-control" />
+            </div>
+        </div>
+    <button class="btn btn-primary">Add Item</button>
+}
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#formAddMobileSuit').validate({
+                rules: {
+                    'MobileSuit.Name': {
+                        required: true
+                    },
+                
+                }
+            });
+        });
+
+    </script>
+}
+
+
+
+

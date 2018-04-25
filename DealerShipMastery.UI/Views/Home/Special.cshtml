@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DealerShipMastery.Models.TableModels.Special>
+@{
+    ViewBag.Title = "Special";
+}
+
+<h2>Specials</h2>
+
+@if (ViewBag.displayMenu == "Yes")
+{
+    using (Html.BeginForm("Special", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formAddMake" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <input type="text" id="Title" name="Title" style="width: 325px" />
+                </td>
+                <td>
+                    <input type="text" id="Content" name="Content" style="width: 325px" />
+                </td>
+                <td></td>
+                <td>
+                    <input type="submit" id="Create" value="Create" />
+                </td>
+            </tr>
+        </table>
+    }
+}
+
+
+
+
+
+    @foreach (var special in Model)
+    {
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <img src="@Url.Content("~/Images/dollar.png")" width="50" height="50" />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td> <strong>@special.Title</strong> </td>
+                        </tr>
+                        <tr>
+                            <td>@special.Description</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }

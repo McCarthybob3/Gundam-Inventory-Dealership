@@ -1,0 +1,135 @@
+﻿@model DealerShipMastery.UI.Models.SalesViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Mobile Suit Detail</h2>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <p><strong>@Model.MobileSuit.Year @Model.MobileSuit.Century @Model.MobileSuit.Make @Model.MobileSuit.Model @Model.MobileSuit.Name</strong></p>
+        <img src="@Url.Content("~/Images/"+Model.MobileSuit.Image)" />
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><strong>Body Style:</strong> </td>
+                    <td>@Model.MobileSuit.BodyStyle</td>
+                </tr>
+                <tr>
+                    <td><strong>Interior:</strong> </td>
+                    <td>@Model.MobileSuit.Interior</td>
+                </tr>
+                <tr>
+                    <td><strong>Sale Price:</strong> </td>
+                    <td>@Model.MobileSuit.SalePrice</td>
+                </tr>
+                <tr>
+                    <td><strong>Type:</strong> </td>
+                    <td>@Model.MobileSuit.Type</td>
+                </tr>
+                <tr>
+                    <td><strong>Weapon:</strong> </td>
+                    <td>@Model.MobileSuit.Weapon</td>
+                </tr>
+                <tr>
+                    <td><strong>MSRP:</strong> </td>
+                    <td>@Model.MobileSuit.MSRP</td>
+                </tr>
+                <tr>
+                    <td><strong>Color:</strong> </td>
+                    <td>@Model.MobileSuit.Color</td>
+                </tr>
+                <tr>
+                    <td><strong>Serial Number:</strong> </td>
+                    <td>@Model.MobileSuit.SerialNumber</td>
+                </tr>
+                <tr>
+                    <td><strong>Description:</strong> </td>
+                    <td>@Model.MobileSuit.Description</td>
+                </tr>
+                <tr>
+                    <td><strong>InventoryNumber:</strong> </td>
+                    <td>@Model.MobileSuit.InventoryNumber</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<div class=" row">
+    <div id="Saleboxes" class="col-xs-12 col-sm-12 col-md-8">
+
+        @using (Html.BeginForm("Details", "Sales", FormMethod.Post, new { enctype = "multipart/form-data", }))
+    {
+        @Html.HiddenFor(m => m.MobileSuit);
+  
+   
+        <div>
+            <div class="form-check">
+                <label>Name</label>
+                @Html.TextBoxFor(i => i.Sale.Name, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                <label>Phone</label>
+                @Html.TextBoxFor(i => i.Sale.Phone, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                <label>Email</label>
+                @Html.TextBoxFor(i => i.Sale.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                <label>Street1</label>
+                @Html.TextBoxFor(i => i.Sale.Street1, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                <label>Street2</label>
+                @Html.TextBoxFor(i => i.Sale.Street2, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                <label>ZipCode</label>
+                @Html.TextBoxFor(i => i.Sale.ZipCode, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+
+                <label>City</label>
+                @Html.TextBoxFor(i => i.Sale.City, new { @class = "form-control" })
+
+            </div>
+               
+
+            @*<div class="form-check">
+                <label>State</label>
+                @Html.DropDownListFor(i => i.Sale.StateID, Model.States, new { @class = "form-control" })
+            </div>*@
+
+            <div class="form-check">
+                <label>Purchase</label>
+                @Html.DropDownListFor(i => i.Sale.Type, Model.Purchase, new { @class = "form-control" })
+            </div>
+
+
+        </div>
+
+    <input type="submit" id="Submit" value="Submit" />
+
+
+
+
+
+
+}
+
+    </div>
+
+    </div>

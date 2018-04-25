@@ -1,0 +1,124 @@
+﻿@model DealerShipMastery.Models.QueryModels.Detail_Result
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Mobile Suit Detail</h2>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <p><strong>@Model.Year @Model.Century @Model.Make @Model.Model @Model.Name</strong></p>
+        <img src="@Url.Content("~/Images/"+Model.Image)" />
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><strong>Body Style:</strong> </td>
+                    <td>@Model.BodyStyle</td>
+                </tr>
+                <tr>
+                    <td><strong>Interior:</strong> </td>
+                    <td>@Model.Interior</td>
+                </tr>
+                <tr>
+                    <td><strong>Sale Price:</strong> </td>
+                    <td>@Model.SalePrice</td>
+                </tr>
+                <tr>
+                    <td><strong>Type:</strong> </td>
+                    <td>@Model.Type</td>
+                </tr>
+                <tr>
+                    <td><strong>Weapon:</strong> </td>
+                    <td>@Model.Weapon</td>
+                </tr>
+                <tr>
+                    <td><strong>MSRP:</strong> </td>
+                    <td>@Model.MSRP</td>
+                </tr>
+                <tr>
+                    <td><strong>Color:</strong> </td>
+                    <td>@Model.Color</td>
+                </tr>
+                <tr>
+                    <td><strong>Serial Number:</strong> </td>
+                    <td>@Model.SerialNumber</td>
+                </tr>
+                <tr>
+                    <td><strong>Description:</strong> </td>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <td><strong>InventoryNumber:</strong> </td>
+                    <td>@Model.InventoryNumber</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @if (Request.IsAuthenticated)
+    {
+        <button id="btnContact" class="btn btn-default" onclick="addContact()">Contact Us</button>
+}
+else
+{
+    <text>@Html.ActionLink("Register", "Register", "Account") to contact about this!</text>
+    <text>Have an Account? @Html.ActionLink("Log In", "Login", "Account")</text>
+}
+    </div>
+</div>
+@if (Request.IsAuthenticated)
+{
+    <script>
+            var userId = '@ViewBag.UserId';
+            var InventoryNumber = @Model.InventoryNumber;
+          
+
+            $(document).ready(function () {
+                checkIfContact();
+
+            });
+
+
+
+            //function checkIfContact() {
+            //    $.ajax({
+            //        type:'GET',
+            //        url:'http://localhost:61297/api/contact/check/' + userId + '/' + InventoryNumber,
+            //        success: function(response) {
+            //            if(response == true) {
+            //                $('#btnContact').hide();
+            //            }
+            //        },
+            //        error: function() {
+            //            $('#statusMessage').removeClass('bg-success').addClass('bg-danger').text('Could not check contact!');
+            //        }
+            //    });
+            //}
+
+            function addContact() {
+                $.ajax({
+                    type:'POST',
+                    url:'http://localhost:61297/api/contact/add/' + userId + '/' + InventoryNumber,
+                    success: function() {
+                        $('#btnContact').hide();
+                        $('#statusMessage').removeClass('bg-danger').addClass('bg-success').text('Contact requested!');
+                    },
+                    error: function() {
+                        $('#statusMessage').removeClass('bg-success').addClass('bg-danger').text('Could not add contact!');
+                    }
+                });
+            }
+
+
+
+    </script>
+}

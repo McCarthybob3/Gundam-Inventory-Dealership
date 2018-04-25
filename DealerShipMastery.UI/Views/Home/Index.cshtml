@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<DealerShipMastery.Models.QueryModels.Featured_Item>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+  
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Featured MobileSuit</h2>
+    </div>
+</div>
+<div class="row">
+    @foreach(var suit in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4">
+       <p class="FeatureMobileSuit">     <img src="@Url.Content("~/Images/"+suit.Image)" width="250" height="500" /></p>
+       <p class="FeatureMobileSuit">     @suit.Make @suit.Model @suit.Name </p>
+<p class="FeatureMobileSuit">     @suit.SalePrice.ToString("C")</p>
+ <p class="FeatureMobileSuit">    @Html.ActionLink("View Details", "Details", "Inventory", new {id= suit.InventoryNumber}, null) </p>
+
+        </div>
+
+    }
+  
+</div>

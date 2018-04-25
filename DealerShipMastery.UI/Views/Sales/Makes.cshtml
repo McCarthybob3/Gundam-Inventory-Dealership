@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DealerShipMastery.Models.TableModels.Make>
+@{
+    ViewBag.Title = "Makes";
+}
+
+<h2>Makes</h2>
+
+@using (Html.BeginForm("Makes", "Sales", FormMethod.Post, new { enctype = "multipart/form-data", id = "formAddMake" }))
+{
+<table>
+    <tr>
+        <td>
+            Name:
+        </td>
+        <td>
+            <input type="text" id="Make" name="Make" style="width: 325px" />
+        </td>
+        <td></td>
+        <td>
+            <input type="submit" id="Create" value="Create" />
+        </td>
+    </tr>
+</table>
+}
+@foreach (var make in Model)
+{
+
+
+
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <table>
+            <tbody>
+             
+                <tr>
+                    <td> <strong>@make.Name</strong> </td>
+                    <td> <strong>@make.User</strong> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+}
+
